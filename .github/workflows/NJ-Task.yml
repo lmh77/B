@@ -31,4 +31,4 @@ jobs:
         usernj: ${{secrets.UNICOM_USERNJ}}
         passwordnj: ${{secrets.UNICOM_PASSWDNJ}}
         appidnj: ${{secrets.UNICOM_APPIDNJ}}
-      run: node index.js unicom --user=${usernj} --password=${passwordnj} --appid=${appidnj} --tryrun
+      run: node index.js unicom --user ${usernj} --password ${passwordnj} --appid ${appidnj} --tryrun
