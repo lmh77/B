@@ -28,8 +28,8 @@ jobs:
 
     - name: 【联通掌厅签到】
       env:
-        user: ${{ secrets.USER2 }}
-        appid: ${{ secrets.APPID2 }}
+        user: ${{secrets.USERnj}}
+        appid: ${{secrets.APPIDnj}}
       run: |
             if test -z "$appid"; then   appid="247b001385de5cc6ce11731ba1b15835313d489d604e58280e455a6c91e5058651acfb0f0b77029c2372659c319e02645b54c0acc367e692ab24a546b83c302d"; fi
             
@@ -40,7 +40,7 @@ jobs:
 
     - name: 【联通日常任务】
       env:
-        user: ${{secrets.unicom_user2}}
-        password: ${{secrets.unicom_password2}}
-        appid: ${{secrets.unicom_appid2}}
+        user: ${{secrets.unicom_usernj}}
+        password: ${{secrets.unicom_passwordnj}}
+        appid: ${{secrets.unicom_appidnj}}
       run: node index.js unicom --user=${user} --password=${password} --appid=${appid} --tryrun
