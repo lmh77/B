@@ -26,15 +26,15 @@ jobs:
       run: |
         npm install
 
-    - name: 【联通掌厅签到】
-      env:
-        usernj: ${{secrets.USERnj}}
-        appid: ${{secrets.APPIDnj}}
-      run: |
-            for u in $usernj
-            do
-              bash function/CnUnicom.sh ${u/,/ }
-            done
+#     - name: 【联通掌厅签到】
+#       env:
+#         usernj: ${{secrets.USERnj}}
+#         appid: ${{secrets.APPIDnj}}
+#       run: |
+#             for u in $usernj
+#             do
+#               bash function/CnUnicom.sh ${u/,/ }
+#             done
 
     - name: 【联通日常任务】
       env:
