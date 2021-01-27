@@ -1,0 +1,106 @@
+name: My-Daily-Task
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '1 1,6,12,16 * * *'
+
+jobs:
+  build:
+    if: github.event.repository.owner.id == github.event.sender.id
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: 【设置服务时区】
+      run: sudo timedatectl set-timezone 'Asia/Shanghai'
+
+    - name: 【设置Node.JS】
+      uses: actions/setup-node@v1
+      with:
+        node-version: 12
+        registry-url: "https://registry.npmjs.org"
+
+    - name: 【设置Python3】
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.8
+
+    - name: 【安装所需依赖】
+      run: |
+        npm install
+
+    - name: 【安装所需依赖】
+      run: |
+        python -m pip install --upgrade pip
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+    - name: 【网易日常任务】
+      env:
+        PHONE: ${{ secrets.PHONE }}
+        PASSWORD: ${{ secrets.PASSWORD }}
+        SCKEY: ${{ secrets.BARK_PUSH }}
+      run: python3 function/music.py ${PHONE} ${PASSWORD} -s ${SCKEY}
+
+    - name: 【百度签到任务】
+      run: node function/tieba.js
+      env:
+        BDUSS: ${{ secrets.BDUSS }}
+        SEND_KEY: ${{ secrets.SEND_KEY }}
+        PUSH_KEY: ${{ secrets.PUSH_KEY }}
+        BARK_PUSH: ${{ secrets.BARK_PUSH }}
+        QQ_SKEY: ${{ secrets.QQ_SKEY}}
+        QQ_MODE: ${{ secrets.QQ_MODE}}
+        PUSH_PLUS_TOKEN: ${{ secrets.PUSH_PLUS_TOKEN}}
+        PUSH_PLUS_USER: ${{ secrets.PUSH_PLUS_USER}}
+        QYWX_KEY: ${{ secrets.QYWX_KEY}}
+        TG_PROXY_HOST: ${{ secrets.TG_PROXY_HOST}}
+        TG_PROXY_PORT: ${{ secrets.TG_PROXY_PORT}}
+        IGOT_PUSH_KEY: ${{ secrets.IGOT_PUSH_KEY}}
+        TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
+        TG_USER_ID: ${{ secrets.TG_USER_ID }}
+        BARK_SOUND: ${{ secrets.BARK_SOUND }}
+        DD_BOT_TOKEN: ${{ secrets.DD_BOT_TOKEN }}
+        DD_BOT_SECRET: ${{ secrets.DD_BOT_SECRET }}
+
+    - name: 【腾讯视频签到】
+      run: node function/v_video.js
+      env:
+        V_REF_URL: ${{ secrets.V_REF_URL }}
+        V_COOKIE: ${{ secrets.V_COOKIE }}
+        SEND_KEY: ${{ secrets.SEND_KEY }}
+        PUSH_KEY: ${{ secrets.PUSH_KEY }}
+        BARK_PUSH: ${{ secrets.BARK_PUSH }}
+        QQ_SKEY: ${{ secrets.QQ_SKEY}}
+        QQ_MODE: ${{ secrets.QQ_MODE}}
+        PUSH_PLUS_TOKEN: ${{ secrets.PUSH_PLUS_TOKEN}}
+        PUSH_PLUS_USER: ${{ secrets.PUSH_PLUS_USER}}
+        QYWX_KEY: ${{ secrets.QYWX_KEY}}
+        TG_PROXY_HOST: ${{ secrets.TG_PROXY_HOST}}
+        TG_PROXY_PORT: ${{ secrets.TG_PROXY_PORT}}
+        IGOT_PUSH_KEY: ${{ secrets.IGOT_PUSH_KEY}}
+        TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
+        TG_USER_ID: ${{ secrets.TG_USER_ID }}
+        BARK_SOUND: ${{ secrets.BARK_SOUND }}
+        DD_BOT_TOKEN: ${{ secrets.DD_BOT_TOKEN }}
+        DD_BOT_SECRET: ${{ secrets.DD_BOT_SECRET }}
+
+    - name: 【联通掌厅签到】
+      env:
+        user: ${{ secrets.USER }}
+        appid: ${{ secrets.APPID }}
+      run: |
+            if test -z "$appid"; then   appid="247b001385de5cc6ce11731ba1b15835313d489d604e58280e455a6c91e5058651acfb0f0b77029c2372659c319e02645b54c0acc367e692ab24a546b83c302d"; fi
+            
+            for u in $user
+            do
+              bash function/CnUnicom.sh ${u/,/ }
+            done
+
+    - name: 【联通日常任务】
+      env:
+        user: ${{secrets.unicom_user}}
+        password: ${{secrets.unicom_password}}
+        appid: ${{secrets.unicom_appid}}
+      run: node index.js unicom --user=${user} --password=${password} --appid=${appid} --tryrun
