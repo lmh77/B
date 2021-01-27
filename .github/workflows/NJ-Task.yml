@@ -26,19 +26,9 @@ jobs:
       run: |
         npm install
 
-#     - name: 【联通掌厅签到】
-#       env:
-#         usernj: ${{secrets.USERnj}}
-#         appid: ${{secrets.APPIDnj}}
-#       run: |
-#             for u in $usernj
-#             do
-#               bash function/CnUnicom.sh ${u/,/ }
-#             done
-
     - name: 【联通日常任务】
       env:
-        user: ${{secrets.unicom_usernj}}
-        password: ${{secrets.unicom_passwordnj}}
-        appid: ${{secrets.unicom_appidnj}}
-      run: node index.js unicom --user=${user} --password=${password} --appid=${appid} --tryrun
+        usernj: ${{secrets.unicom_usernj}}
+        passwordnj: ${{secrets.unicom_passwordnj}}
+        appidnj: ${{secrets.unicom_appidnj}}
+      run: node index.js unicom --user=${usernj} --password=${passwordnj} --appid=${appidnj} --tryrun
