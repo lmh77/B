@@ -1,0 +1,46 @@
+name: NieJI-Task
+
+on:
+  workflow_dispatch: # 手动触发
+  schedule: # 计划任务触发
+    - cron: "0 1,6,12,16 * * *" # cron表达式，Actions时区是UTC时间，所以要往前推8个小时,如上表示每天13点10分
+
+jobs:
+  build:
+    if: github.event.repository.owner.id == github.event.sender.id
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: 【设置服务时区】
+      run: sudo timedatectl set-timezone 'Asia/Shanghai'
+
+    - name: 【设置Node.JS】
+      uses: actions/setup-node@v1
+      with:
+        node-version: 12
+        registry-url: "https://registry.npmjs.org"
+
+    - name: 【安装所需依赖】
+      run: |
+        npm install
+
+    - name: 【联通掌厅签到】
+      env:
+        user: ${{ secrets.USER2 }}
+        appid: ${{ secrets.APPID2 }}
+      run: |
+            if test -z "$appid"; then   appid="247b001385de5cc6ce11731ba1b15835313d489d604e58280e455a6c91e5058651acfb0f0b77029c2372659c319e02645b54c0acc367e692ab24a546b83c302d"; fi
+            
+            for u in $user
+            do
+              bash function/CnUnicom.sh ${u/,/ }
+            done
+
+    - name: 【联通日常任务】
+      env:
+        user: ${{secrets.unicom_user2}}
+        password: ${{secrets.unicom_password2}}
+        appid: ${{secrets.unicom_appid2}}
+      run: node index.js unicom --user=${user} --password=${password} --appid=${appid} --tryrun
