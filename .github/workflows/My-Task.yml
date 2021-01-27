@@ -3,7 +3,7 @@ name: My-Task
 on:
   workflow_dispatch:
   schedule:
-    - cron: '1 1,6,12,16 * * *'
+    - cron: '0 0,4,8,16 * * *'
 
 jobs:
   build:
