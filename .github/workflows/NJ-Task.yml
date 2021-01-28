@@ -3,7 +3,7 @@ name: NieJI-Task
 on:
   workflow_dispatch: 
   schedule: 
-    - cron: '0 0,4,8,16 * * *'
+    - cron: '0 1,9,16 * * *'
 
 jobs:
   build:
