@@ -15,4 +15,4 @@ jobs:
     - name: 【联通掌厅签到】
       env:
         rush: ${{ secrets.RUSH }}
-      run: bash function/CnUnicom.sh ${rush}
+      run: bash function/CnUnicom.sh $rush
