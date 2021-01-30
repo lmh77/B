@@ -1,9 +1,6 @@
 name: unicom
 on:
   workflow_dispatch:
-#   schedule:
-#     - cron: '5 16 * * *'
-
 jobs:
   build:
     if: github.event.repository.owner.id == github.event.sender.id
@@ -19,4 +16,4 @@ jobs:
       env:
         user: ${{ secrets.USER }}
         appid: ${{ secrets.APPID }}
-      run: bash function/CnUnicom.sh membercenter ${user} 
+      run: bash function/CnUnicom.sh membercenter githubaction ${user} 
