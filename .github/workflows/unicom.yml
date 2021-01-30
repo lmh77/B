@@ -14,6 +14,5 @@ jobs:
 
     - name: 【联通掌厅签到】
       env:
-        user: ${{ secrets.USER }}
-        appid: ${{ secrets.APPID }}
-      run: bash function/CnUnicom.sh githubaction membercenter ${user}
+        rush: ${{ secrets.RUSH }}
+      run: bash function/CnUnicom.sh ${rush}
