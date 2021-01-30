@@ -19,4 +19,4 @@ jobs:
       env:
         user: ${{ secrets.USER }}
         appid: ${{ secrets.APPID }}
-      run: bash function/CnUnicom.sh membercenter ${user} appid=${appid}
+      run: bash function/CnUnicom.sh membercenter ${user} 
