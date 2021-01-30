@@ -16,4 +16,4 @@ jobs:
       env:
         user: ${{ secrets.USER }}
         appid: ${{ secrets.APPID }}
-      run: bash function/CnUnicom.sh membercenter githubaction ${user} 
+      run: bash function/CnUnicom.sh membercenter ${user} githubaction 
