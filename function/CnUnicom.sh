@@ -29,6 +29,10 @@ echo ${all_parameter[*]} | grep -qE "deviceId@[0-9]+" && deviceId=$(echo ${all_p
 ## 1GB全国流量月包：  ff80808165afd2960165cdbc92470bef
 #####
 
+# 使用Github Action运行时需要传入参数来修改工作路径: githubaction
+workdirbase="/var/log/CnUnicom"
+echo ${all_parameter[*]} | grep -qE "githubaction" && workdirbase="/home/runner/work/HiCnUnicom/CnUnicom"
+
 # 联通APP版本
 unicom_version=8.0100
 
@@ -241,7 +245,7 @@ function main() {
     for ((u = 0; u < ${#all_username_password[*]}; u++)); do
         sleep $(shuf -i 1-10 -n 1)
         username=${all_username_password[u]%@*} && password=${all_username_password[u]#*@}
-        workdir="/var/log/CnUnicom_$username" && [[ ! -d "$workdir" ]] && mkdir $workdir
+        workdir="${workdirbase}_${username}" && [[ ! -d "$workdir" ]] && mkdir $workdir
         userlogin && userlogin_ook[u]=$(echo ${username:0:3}****${username:7}) || { userlogin_err[u]=$(echo ${username:0:3}****${username:7}); continue; }
         membercenter
         liulactive
