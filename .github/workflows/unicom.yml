@@ -2,17 +2,12 @@ name: unicom
 on:
   workflow_dispatch:
 jobs:
-  build:
-    if: github.event.repository.owner.id == github.event.sender.id
+  update:
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v2
-
-    - name: 【设置服务时区】
-      run: sudo timedatectl set-timezone 'Asia/Shanghai'
-
+    - name: Checkout codebase
+      uses: actions/checkout@v2
     - name: 【联通掌厅签到】
       env:
-        rush: ${{ secrets.RUSH }}
-      run: bash function/CnUnicom.sh $rush
+        RUSH: ${{ secrets.RUSH }}
+      run: bash function/CnUnicom.sh $RUSH
