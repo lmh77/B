@@ -1,8 +1,8 @@
 name: unicom
 on:
   workflow_dispatch:
-  schedule:
-    - cron: '5 16 * * *'
+#   schedule:
+#     - cron: '5 16 * * *'
 
 jobs:
   build:
@@ -19,4 +19,4 @@ jobs:
       env:
         user: ${{ secrets.USER }}
         appid: ${{ secrets.APPID }}
-      run: bash function/CnUnicom.sh ${user} appid=${appid}
+      run: bash function/CnUnicom.sh membercenter ${user} appid=${appid}
