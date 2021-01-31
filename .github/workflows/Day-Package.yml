@@ -26,8 +26,8 @@ jobs:
         #   run: |
         #    bash DayPackage.sh $DAY
 
-    - name: 【联通掌厅积分】
-      env:
-        PARAMETER: ${{ secrets.PARAMETER }}
-      run: |
-        bash CnUnicom.sh $PARAMETER
+        - name: 【联通掌厅积分】
+          env:
+            PARAMETER: ${{ secrets.PARAMETER }}
+          run: |
+            bash CnUnicom.sh $PARAMETER
