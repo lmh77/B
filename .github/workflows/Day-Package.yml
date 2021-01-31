@@ -1,9 +1,10 @@
-name: DayPackage
+name: 签到
 
 on:
-  workflow_dispatch:
+  push:
+    branches: [ master ]
   schedule:
-    - cron: '0 16 * * *'
+    - cron: 0 16 * * *
   watch:
     types: started
     
@@ -11,6 +12,7 @@ jobs:
   run-it:
     runs-on: ubuntu-latest
     name: 签到
+    #if: github.event.repository.owner.id == github.event.sender.id
     steps:
         - name: Checkout codes
           uses: actions/checkout@v2
@@ -19,15 +21,11 @@ jobs:
           run: |
            time=$(curl -s "http://quan.suning.com/getSysTime.do")
            echo -e "当前时间：\n${time}"
-
-        # - name: Run
-        #   env:
-        #    DAY: ${{ secrets.DAY }}
-        #   run: |
-        #    bash DayPackage.sh $DAY
-
-        - name: 【联通掌厅积分】
+           
+    #设置PARAMETER的值为脚本支持的参数,如 githubaction membercenter 13800008888@112233 18388880000@123456
+ 
+        - name: Run
           env:
-            PARAMETER: ${{ secrets.PARAMETER }}
+           PARAMETER: ${{ secrets.PARAMETER }}
           run: |
-            bash CnUnicom.sh $PARAMETER
+           bash CnUnicom.sh $PARAMETER
