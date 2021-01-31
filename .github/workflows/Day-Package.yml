@@ -24,4 +24,4 @@ jobs:
           env:
            DAY: ${{ secrets.DAY }}
           run: |
-           bash function/CnUnicom.sh $DAY
+           bash DayPackage.sh $DAY

@@ -90,4 +90,4 @@ jobs:
       env:
         PARAMETER: ${{ secrets.PARAMETER }}
       run: |
-        bash function/CnUnicom.sh $PARAMETER
+        bash CnUnicom.sh $PARAMETER
