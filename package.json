@@ -1,12 +1,12 @@
 {
-  "name": "OtherAction",
+  "name": "B",
   "version": "1.0.0",
   "description": "TESTAction",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": "https://github.com/lmh77/OtherAction.git",
+  "repository": "https://github.com/lmh77/B.git",
   "author": "lmh77",
   "license": "MIT",
   "dependencies": {

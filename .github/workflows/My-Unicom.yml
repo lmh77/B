@@ -1,0 +1,34 @@
+name: My-Unicom
+
+on:
+  workflow_dispatch: 
+  schedule: 
+    - cron: '0 1,9,16 * * *'
+
+jobs:
+  build:
+    if: github.event.repository.owner.id == github.event.sender.id
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: 【设置服务时区】
+      run: sudo timedatectl set-timezone 'Asia/Shanghai'
+
+    - name: 【设置Node.JS】
+      uses: actions/setup-node@v1
+      with:
+        node-version: 12
+        registry-url: "https://registry.npmjs.org"
+
+    - name: 【安装所需依赖】
+      run: |
+        cd UnicomTask/ && npm install
+
+    - name: 【联通日常任务】
+      env:
+        user: ${{secrets.unicom_user}}
+        password: ${{secrets.unicom_password}}
+        appid: ${{secrets.unicom_appid}}
+      run: cd UnicomTask/ && node index.js unicom --user=${user} --password=${password} --appid=${appid} --tryrun

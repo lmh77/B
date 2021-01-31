@@ -1,4 +1,4 @@
-name: NieJI-Task
+name: NieJI-Unicom
 
 on:
   workflow_dispatch: 
@@ -24,11 +24,11 @@ jobs:
 
     - name: 【安装所需依赖】
       run: |
-        npm install
+        cd UnicomTask/ && npm install
 
     - name: 【联通日常任务】
       env:
         usernj: ${{secrets.UNICOM_USERNJ}}
         passwordnj: ${{secrets.UNICOM_PASSWORDNJ}}
         appidnj: ${{secrets.UNICOM_APPIDNJ}}
-      run: node index.js unicom --user ${usernj} --password ${passwordnj} --appid ${appidnj} --tryrun
+      run: cd UnicomTask/ && node index.js unicom --user ${usernj} --password ${passwordnj} --appid ${appidnj} --tryrun

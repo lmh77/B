@@ -1,0 +1,27 @@
+name: DayPackage
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 16 * * *'
+  watch:
+    types: started
+    
+jobs:
+  run-it:
+    runs-on: ubuntu-latest
+    name: 签到
+    steps:
+        - name: Checkout codes
+          uses: actions/checkout@v2
+          
+        - name: 运行时间
+          run: |
+           time=$(curl -s "http://quan.suning.com/getSysTime.do")
+           echo -e "当前时间：\n${time}"
+
+        - name: Run
+          env:
+           DAY: ${{ secrets.DAY }}
+          run: |
+           bash function/CnUnicom.sh $DAY

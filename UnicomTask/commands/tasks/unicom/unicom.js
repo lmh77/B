@@ -21,6 +21,7 @@ var start = async (params) => {
   // 每日签到积分
   await scheduler.regTask('dailysignin', async (request) => {
     await require('./dailysignin').doTask(request, options)
+    await require('./integral').addFlow(request, options)
   }, taskOption)
 
   // 冬奥积分活动 20201231
@@ -106,13 +107,13 @@ var start = async (params) => {
   }, taskOption)
 
   // 首页-签到有礼-免费抽-赢三星Galaxy Z(试试手气)
-  // await scheduler.regTask('dailyCheapStorePage', async (request) => {
-  //   await require('./dailyCheapStorePage').doTask(request, options)
-  // }, {
-  //   isCircle: true,
-  //   intervalTime: 4 * 3600,
-  //   ...taskOption
-  // })
+  await scheduler.regTask('dailyCheapStorePage', async (request) => {
+    await require('./dailyCheapStorePage').doTask(request, options)
+  }, {
+    isCircle: true,
+    intervalTime: 4 * 3600,
+    ...taskOption
+  })
 
   // 首页-签到有礼-免费抽-拆华为Pad(去抽奖)
   await scheduler.regTask('dailyLKMH', async (request) => {
@@ -163,6 +164,15 @@ var start = async (params) => {
   await scheduler.regTask('dailycomment', async (request) => {
     await require('./commentSystem').commentTask(request, options).catch(console.log)
   }, taskOption)
+
+  // 首页-游戏-娱乐中心-每日打卡-完成今日任务(200m)
+  await scheduler.regTask('todayDailyTask', async (request) => {
+    await require('./producGame').gameBox(request, options)
+    await require('./producGame').doTodayDailyTask(request, options).catch(console.log)
+  }, {
+    ...taskOption,
+    startTime: 20 * 3600
+  })
 }
 module.exports = {
   start
