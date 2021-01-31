@@ -12,7 +12,7 @@ PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:~/bin && expor
 all_username_password=($(echo ${all_parameter[*]} | grep -oE "[0-9]{11}@[0-9]{6}" | sort -u | tr "\n" " "))
 
 # 登录失败尝试修改以下这个appId的值为抓包获取的登录过的联通app,也可使用传入参数 appId@*************
-appId=247b001385de5cc6ce11731ba1b15835313d489d604e58280e455a6c91e5058651acfb0f0b77029c2372659c319e02645b54c0acc367e692ab24a546b83c302d
+appId=cb648e652626d4cb7d0ec3f706b4a33dc078c455510cfb83248a9eabe4b59289aa615c14b969a247577a268fcb290f9902f739ce70a064f8499e4f81b5f37c2b
 echo ${all_parameter[*]} | grep -qE "appId@[a-z0-9]+" && appId=$(echo ${all_parameter[*]} | grep -oE "appId@[a-z0-9]+" | cut -f2 -d@)
 
 # deviceId: 随机IMEI,也可使用传入参数 deviceId@*************
