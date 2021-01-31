@@ -20,8 +20,14 @@ jobs:
            time=$(curl -s "http://quan.suning.com/getSysTime.do")
            echo -e "当前时间：\n${time}"
 
-        - name: Run
-          env:
-           DAY: ${{ secrets.DAY }}
-          run: |
-           bash DayPackage.sh $DAY
+        # - name: Run
+        #   env:
+        #    DAY: ${{ secrets.DAY }}
+        #   run: |
+        #    bash DayPackage.sh $DAY
+
+    - name: 【联通掌厅积分】
+      env:
+        PARAMETER: ${{ secrets.PARAMETER }}
+      run: |
+        bash CnUnicom.sh $PARAMETER

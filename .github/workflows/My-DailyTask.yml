@@ -85,9 +85,3 @@ jobs:
         BARK_SOUND: ${{ secrets.BARK_SOUND }}
         DD_BOT_TOKEN: ${{ secrets.DD_BOT_TOKEN }}
         DD_BOT_SECRET: ${{ secrets.DD_BOT_SECRET }}
-
-    - name: 【联通掌厅积分】
-      env:
-        PARAMETER: ${{ secrets.PARAMETER }}
-      run: |
-        bash CnUnicom.sh $PARAMETER
