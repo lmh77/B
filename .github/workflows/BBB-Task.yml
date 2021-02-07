@@ -1,6 +1,5 @@
 name: BBB
 on:
-    push:
     workflow_dispatch:
     schedule:
         - cron: "0 0-15/2 * * *"
