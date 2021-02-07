@@ -3,6 +3,7 @@ on:
     # push:
     #     branches:
     #         - master
+    workflow_dispatch:
     schedule:
         - cron: "0 0-15/2 * * *"
 jobs:
