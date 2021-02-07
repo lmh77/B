@@ -15,7 +15,7 @@ jobs:
               with:
                   node-version: "12.x"
             - name: Run app
-              run: npm install
+              run: cd BBB/ && npm install
             - name: Run node
               env:
                   BDUSS: ${{ secrets.BDUSS }}
