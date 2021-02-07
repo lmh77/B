@@ -1,0 +1,23 @@
+name: BBB
+on:
+    # push:
+    #     branches:
+    #         - master
+    schedule:
+        - cron: "0 0-15/2 * * *"
+jobs:
+    build:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout codes
+              uses: actions/checkout@v2
+            - name: Use Node.js
+              uses: actions/setup-node@v1
+              with:
+                  node-version: "12.x"
+            - name: Run app
+              run: cd BBB/ && npm install
+            - run: node BBB/BBB.js
+              env:
+                  bbb_ck: ${{ secrets.bbb_ck }}
