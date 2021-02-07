@@ -18,6 +18,4 @@ jobs:
             - name: Run app
               run: npm install
             - name: Run node
-              env:
-                  bbb_ck: ${{ secrets.bbb_ck }}
-              run: node BBB/BBB.js ${bbb_ck}
+              run: node BBB/BBB.js 
