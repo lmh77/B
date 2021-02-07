@@ -15,7 +15,7 @@ jobs:
               with:
                   node-version: "12.x"
             - name: Run app
-              run: cd BBB/ && npm install
+              run:  npm install
             - name: Run node
               env:
                   BDUSS: ${{ secrets.BDUSS }}
@@ -35,4 +35,4 @@ jobs:
                   BARK_SOUND: ${{ secrets.BARK_SOUND }}
                   DD_BOT_TOKEN: ${{ secrets.DD_BOT_TOKEN }}
                   DD_BOT_SECRET: ${{ secrets.DD_BOT_SECRET }}
-              run: node BBB/BBB.js 
+              run: node function/BBB.js 
