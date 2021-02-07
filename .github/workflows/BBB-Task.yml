@@ -19,6 +19,6 @@ jobs:
                   node-version: "12.x"
             - name: Run app
               run: npm install
-            - run: node BBB/BBB.js
+            - run: node BBB/BBB.js ${bbb_ck}
               env:
                   bbb_ck: ${{ secrets.bbb_ck }}
