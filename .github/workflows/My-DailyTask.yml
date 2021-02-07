@@ -37,12 +37,12 @@ jobs:
         python -m pip install --upgrade pip
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: 【安装所需依赖】
-        run: |
+      run: |
           pip3 install setuptools
     - name: 【COINPY任务】
-        env:
-           coincookie: ${{ secrets.COINCOOKIE }}
-        run: |
+      env:
+        coincookie: ${{ secrets.COINCOOKIE }}
+      run: |
           python3 function/coin.py ${coincookie}
     - name: 【网易日常任务】
       env:
