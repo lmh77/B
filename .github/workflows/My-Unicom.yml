@@ -24,7 +24,7 @@ jobs:
 
     - name: 【安装所需依赖】
       run: |
-        git clone -b dev https://github.com/lmh77/BaseSation.git ~/10010
+        git clone -b dev https://github.com/DJ-clamp/BaseSation.git ~/10010
         cd ~/10010 && npm install
 
     - name: 【联通日常任务】
