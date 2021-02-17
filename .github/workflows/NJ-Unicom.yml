@@ -3,7 +3,7 @@ name: NieJI-Unicom
 on:
   workflow_dispatch: 
   schedule: 
-    - cron: '0 1,9,16 * * *'
+    - cron: '0 1,9,13,17,21 * * *'
 
 jobs:
   build:
@@ -24,11 +24,12 @@ jobs:
 
     - name: 【安装所需依赖】
       run: |
-        cd UnicomTask/ && npm install
+        git clone -b dev https://github.com/lmh77/BaseSation.git ~/10010
+        cd ~/10010 && npm install
 
     - name: 【联通日常任务】
       env:
         usernj: ${{secrets.UNICOM_USERNJ}}
         passwordnj: ${{secrets.UNICOM_PASSWORDNJ}}
         appidnj: ${{secrets.UNICOM_APPIDNJ}}
-      run: cd UnicomTask/ && node index.js unicom --user ${usernj} --password ${passwordnj} --appid ${appidnj} --tryrun
+      run: cd ~/10010 && node index.js unicom --user ${usernj} --password ${passwordnj} --appid ${appidnj} --tryrun
