@@ -22,13 +22,13 @@ jobs:
         node-version: 12
         registry-url: "https://registry.npmjs.org"
 
-    - name: Cache node_modules
-      uses: actions/cache@v2
-      env:
-        cache-name: cache-node-modules
-      with:
-        path: node_modules
-        key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('package.json') }}
+    # - name: Cache node_modules
+    #   uses: actions/cache@v2
+    #   env:
+    #     cache-name: cache-node-modules
+    #   with:
+    #     path: node_modules
+    #     key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('package.json') }}
         
     - name: 【安装所需依赖】
       run: |

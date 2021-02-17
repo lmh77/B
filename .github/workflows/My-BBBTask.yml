@@ -15,7 +15,8 @@ jobs:
               with:
                   node-version: "12.x"
 
-            - name: Run app
-              run:  npm install
-            - name: Run node
-              run: node function/BBB.js 
+            - name: Run
+              run: |
+                    cd function/
+                    npm install
+                    node BBB.js 
