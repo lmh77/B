@@ -1,10 +1,13 @@
 {
-  "name": "auto-sign-machine",
+  "name": "B",
   "version": "1.0.0",
-  "description": "自动签到机器人",
+  "description": "TESTAction",
   "main": "index.js",
-  "repository": "https://github.com/lunnlew/AutoSignMachine.git",
-  "author": "lunnlew",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": "https://github.com/lmh77/B.git",
+  "author": "lmh77",
   "license": "MIT",
   "dependencies": {
     "axios": "^0.21.0",
@@ -20,14 +23,10 @@
     "protobufjs": "^6.10.2",
     "qs": "^6.9.4",
     "tough-cookie": "^4.0.0",
+    "download": "^8.0.0",
+    "request": "^2.88.2",
+    "request-promise": "^4.2.5",
+    "got": "^11.7.0",
     "yargs": "^16.1.0"
-  },
-  "devDependencies": {
-    "@babel/eslint-parser": "^7.12.16",
-    "eslint": "^7.20.0",
-    "eslint-config-prettier": "^7.2.0",
-    "eslint-plugin-prettier": "^3.3.1",
-    "prettier": "2.2.1",
-    "serverless-tencent-scf": "^0.1.7"
   }
 }
