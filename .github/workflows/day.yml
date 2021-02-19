@@ -1,4 +1,4 @@
-name: My-DailyTask
+name: day
 
 on:
   workflow_dispatch:
