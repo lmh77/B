@@ -1,4 +1,4 @@
-name: NieJI-Unicom
+name: emmm
 
 on:
   workflow_dispatch: 
@@ -21,23 +21,21 @@ jobs:
       with:
         node-version: 12
         registry-url: "https://registry.npmjs.org"
-
-    # - name: Cache node_modules
-    #   uses: actions/cache@v2
-    #   env:
-    #     cache-name: cache-node-modules
-    #   with:
-    #     path: node_modules
-    #     key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('package.json') }}
-
+        
     - name: 【安装所需依赖】
       run: |
-        git clone -b dev https://github.com/DJ-clamp/BaseSation.git ~/10010
-        cd ~/10010 && npm install
+        git clone -b dev https://github.com/DJ-clamp/BaseSation.git ~/task
+        cd ~/task && npm install && sed -i $(echo `sed -n '/process.env.GITHUB_ACTIONS/=' utils/scheduler.js`+1|bc)d utils/scheduler.js
 
-    - name: 【联通日常任务】
+    - name: 【联通日常任务1】
+      env:
+        user: ${{secrets.unicom_user}}
+        password: ${{secrets.unicom_password}}
+        appid: ${{secrets.unicom_appid}}
+      run: cd ~/task && node index.js unicom --user=${user} --password=${password} --appid=${appid} --tryrun
+    - name: 【联通日常任务2】
       env:
         usernj: ${{secrets.UNICOM_USERNJ}}
         passwordnj: ${{secrets.UNICOM_PASSWORDNJ}}
         appidnj: ${{secrets.UNICOM_APPIDNJ}}
-      run: cd ~/10010 && node index.js unicom --user ${usernj} --password ${passwordnj} --appid ${appidnj} --tryrun
+      run: cd ~/task && node index.js unicom --user ${usernj} --password ${passwordnj} --appid ${appidnj} --tryrun
