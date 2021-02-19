@@ -37,14 +37,7 @@ jobs:
         python -m pip install --upgrade pip
         cd function/
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-    - name: 【安装所需依赖】
-      run: |
-          pip3 install setuptools
-    - name: 【COINPY任务】
-      env:
-        coincookie: ${{ secrets.COINCOOKIE }}
-      run: |
-          python3 function/coin.py ${coincookie}
+
     - name: 【网易日常任务】
       env:
         PHONE: ${{ secrets.PHONE }}
@@ -56,41 +49,13 @@ jobs:
       run: node function/tieba.js
       env:
         BDUSS: ${{ secrets.BDUSS }}
-        SEND_KEY: ${{ secrets.SEND_KEY }}
-        PUSH_KEY: ${{ secrets.PUSH_KEY }}
         BARK_PUSH: ${{ secrets.BARK_PUSH }}
-        QQ_SKEY: ${{ secrets.QQ_SKEY}}
-        QQ_MODE: ${{ secrets.QQ_MODE}}
-        PUSH_PLUS_TOKEN: ${{ secrets.PUSH_PLUS_TOKEN}}
-        PUSH_PLUS_USER: ${{ secrets.PUSH_PLUS_USER}}
-        QYWX_KEY: ${{ secrets.QYWX_KEY}}
-        TG_PROXY_HOST: ${{ secrets.TG_PROXY_HOST}}
-        TG_PROXY_PORT: ${{ secrets.TG_PROXY_PORT}}
-        IGOT_PUSH_KEY: ${{ secrets.IGOT_PUSH_KEY}}
-        TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
-        TG_USER_ID: ${{ secrets.TG_USER_ID }}
-        BARK_SOUND: ${{ secrets.BARK_SOUND }}
-        DD_BOT_TOKEN: ${{ secrets.DD_BOT_TOKEN }}
-        DD_BOT_SECRET: ${{ secrets.DD_BOT_SECRET }}
+
 
     - name: 【腾讯视频签到】
       run: node function/v_video.js
       env:
         V_REF_URL: ${{ secrets.V_REF_URL }}
         V_COOKIE: ${{ secrets.V_COOKIE }}
-        SEND_KEY: ${{ secrets.SEND_KEY }}
-        PUSH_KEY: ${{ secrets.PUSH_KEY }}
         BARK_PUSH: ${{ secrets.BARK_PUSH }}
-        QQ_SKEY: ${{ secrets.QQ_SKEY}}
-        QQ_MODE: ${{ secrets.QQ_MODE}}
-        PUSH_PLUS_TOKEN: ${{ secrets.PUSH_PLUS_TOKEN}}
-        PUSH_PLUS_USER: ${{ secrets.PUSH_PLUS_USER}}
-        QYWX_KEY: ${{ secrets.QYWX_KEY}}
-        TG_PROXY_HOST: ${{ secrets.TG_PROXY_HOST}}
-        TG_PROXY_PORT: ${{ secrets.TG_PROXY_PORT}}
-        IGOT_PUSH_KEY: ${{ secrets.IGOT_PUSH_KEY}}
-        TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
-        TG_USER_ID: ${{ secrets.TG_USER_ID }}
-        BARK_SOUND: ${{ secrets.BARK_SOUND }}
-        DD_BOT_TOKEN: ${{ secrets.DD_BOT_TOKEN }}
-        DD_BOT_SECRET: ${{ secrets.DD_BOT_SECRET }}
+
