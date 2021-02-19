@@ -94,16 +94,3 @@ jobs:
         BARK_SOUND: ${{ secrets.BARK_SOUND }}
         DD_BOT_TOKEN: ${{ secrets.DD_BOT_TOKEN }}
         DD_BOT_SECRET: ${{ secrets.DD_BOT_SECRET }}
-
-    - name: 【BILIBILI】
-      env:
-        DedeUserID: ${{secrets.bilibili_USERID}}
-        SESSDATA: ${{secrets.bilibili_SESSDATA}}
-        bili_jct: ${{secrets.bilibili_BILIJCT}}
-        otherConfigs: ${{secrets.bilibili_OTHERCONFIGS}}
-      run: |
-        git clone -b dev https://github.com/lmh77/BaseSation.git ~/task
-        cd ~/task
-        npm install
-        sed -i $(echo `sed -n '/process.env.GITHUB_ACTIONS/=' utils/scheduler.js`+1|bc)d utils/scheduler.js
-        node index.js bilibili --DedeUserID=${DedeUserID} --SESSDATA=${SESSDATA} --bili_jct=${bili_jct} ${otherConfigs}
