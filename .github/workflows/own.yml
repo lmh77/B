@@ -26,7 +26,7 @@ jobs:
       env:
         GISTENV: ${{secrets.GISTENV}}
       run: |
-        git clone -b azmodan https://github.com/DJ-clamp/BaseSation.git ~/task
+        git clone -b dev https://github.com/DJ-clamp/BaseSation.git ~/task
         cd ~/task
         npm install
         sed -i $(echo `sed -n '/process.env.GITHUB_ACTIONS/=' utils/scheduler.js`+1|bc)d utils/scheduler.js
