@@ -26,24 +26,24 @@ jobs:
       env:
         GISTENV: ${{secrets.GISTENV}}
       run: |
-        git clone -b dev https://github.com/DJ-clamp/BaseSation.git ~/task
+        git clone -b azmodan https://github.com/DJ-clamp/BaseSation.git ~/task
         cd ~/task
         npm install
         sed -i $(echo `sed -n '/process.env.GITHUB_ACTIONS/=' utils/scheduler.js`+1|bc)d utils/scheduler.js
         wget -c ${GISTENV} -O config/.env
 
-    # - name: 【执行任务】
-    #   run: cd ~/task && node index.js unicom --tryrun
+    - name: 【执行任务】
+      run: cd ~/task && node index.js unicom --tasks fetchCoins,dailysignin,winterTwo,dxIntegralEveryDay,dailygamebox,dailylotteryintegral,dailycomment,dailywoTree,dailyBookRead,dailyBookRead10doDraw,dailyBookLuckdraw,dailyLiuLan,dailyVideoFreeGoods,dailyGrabdollPage,jflottery,dailyYYY,dailyVideoScratchcard,dailyLKMH,dailyYYQ,bcow,dailyVideo,dailylottery,gameYearBox,producGameSignin,dailygameflow,todayDailyTask,dailygameIntegral,dailyCourse,ingots,threeSquirrels,freeDownFloorAd,dailyBaWangcard,book5video,dailyFingerqd,dailyFingerqd2,taocan,dailyTurncards --tryrun
 
-    - name: 【联通日常任务1】
-      env:
-        user: ${{secrets.unicom_user}}
-        password: ${{secrets.unicom_password}}
-        appid: ${{secrets.unicom_appid}}
-      run: cd ~/task && node index.js unicom --user=${user} --password=${password} --appid=${appid} --tryrun
-    - name: 【联通日常任务2】
-      env:
-        usernj: ${{secrets.UNICOM_USERNJ}}
-        passwordnj: ${{secrets.UNICOM_PASSWORDNJ}}
-        appidnj: ${{secrets.UNICOM_APPIDNJ}}
-      run: cd ~/task && node index.js unicom --user ${usernj} --password ${passwordnj} --appid ${appidnj} --tryrun
+    # - name: 【联通日常任务1】
+    #   env:
+    #     user: ${{secrets.unicom_user}}
+    #     password: ${{secrets.unicom_password}}
+    #     appid: ${{secrets.unicom_appid}}
+    #   run: cd ~/task && node index.js unicom --user=${user} --password=${password} --appid=${appid} --tryrun
+    # - name: 【联通日常任务2】
+    #   env:
+    #     usernj: ${{secrets.UNICOM_USERNJ}}
+    #     passwordnj: ${{secrets.UNICOM_PASSWORDNJ}}
+    #     appidnj: ${{secrets.UNICOM_APPIDNJ}}
+    #   run: cd ~/task && node index.js unicom --user ${usernj} --password ${passwordnj} --appid ${appidnj} --tryrun
