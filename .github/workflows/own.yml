@@ -32,18 +32,18 @@ jobs:
         sed -i $(echo `sed -n '/process.env.GITHUB_ACTIONS/=' utils/scheduler.js`+1|bc)d utils/scheduler.js
         wget -c ${GISTENV} -O config/.env
 
-    - name: 【执行任务】
-      run: cd ~/task && node index.js unicom --tryrun
+    # - name: 【执行任务】
+    #   run: cd ~/task && node index.js unicom --tryrun
 
-    # - name: 【联通日常任务1】
-    #   env:
-    #     user: ${{secrets.unicom_user}}
-    #     password: ${{secrets.unicom_password}}
-    #     appid: ${{secrets.unicom_appid}}
-    #   run: cd ~/task && node index.js unicom --user=${user} --password=${password} --appid=${appid} --tryrun
-    # - name: 【联通日常任务2】
-    #   env:
-    #     usernj: ${{secrets.UNICOM_USERNJ}}
-    #     passwordnj: ${{secrets.UNICOM_PASSWORDNJ}}
-    #     appidnj: ${{secrets.UNICOM_APPIDNJ}}
-    #   run: cd ~/task && node index.js unicom --user ${usernj} --password ${passwordnj} --appid ${appidnj} --tryrun
+    - name: 【联通日常任务1】
+      env:
+        user: ${{secrets.unicom_user}}
+        password: ${{secrets.unicom_password}}
+        appid: ${{secrets.unicom_appid}}
+      run: cd ~/task && node index.js unicom --user=${user} --password=${password} --appid=${appid} --tryrun
+    - name: 【联通日常任务2】
+      env:
+        usernj: ${{secrets.UNICOM_USERNJ}}
+        passwordnj: ${{secrets.UNICOM_PASSWORDNJ}}
+        appidnj: ${{secrets.UNICOM_APPIDNJ}}
+      run: cd ~/task && node index.js unicom --user ${usernj} --password ${passwordnj} --appid ${appidnj} --tryrun
