@@ -33,8 +33,9 @@ jobs:
         wget -c ${GISTENV} -O config/.env
 
     - name: 【执行任务】
-      run: cd ~/task && node index.js unicom  --tryrun --tasks dailysignin,winterTwo,dxIntegralEveryDay,dailygamebox,dailylotteryintegral,dailycomment,dailywoTree,dailyBookRead,dailyBookRead10doDraw,dailyBookLuckdraw,dailyLiuLan,dailyVideoFreeGoods,dailyGrabdollPage,jflottery,jflotteryad,dailyYYY,dailyVideoScratchcard,dailyLKMH,dailyYYQ,bcow,dailyVideo,dailylottery,gameYearBox,producGameSignin,dailygameflow,todayDailyTask,dailygameIntegral,dailyCourse,ingots,threeSquirrels,freeDownFloorAd,dailyBaWangcard,book5video,dailyFingerqd,dailyFingerqd2,taocan,dailyTurncards,fetchCoins
-
+      run: |
+        cd ~/task && node index.js unicom  --tryrun --tasks dailysignin,winterTwo,dxIntegralEveryDay,dailygamebox,dailylotteryintegral,dailycomment,dailywoTree,dailyBookRead,dailyBookRead10doDraw,dailyBookLuckdraw,dailyLiuLan,dailyVideoFreeGoods,dailyGrabdollPage,jflottery,jflotteryad,dailyYYY,dailyVideoScratchcard,dailyLKMH,dailyYYQ,bcow,dailyVideo,dailylottery,gameYearBox,producGameSignin,todayDailyTask,dailygameIntegral,dailyCourse,ingots,threeSquirrels,freeDownFloorAd,dailyBaWangcard,book5video,dailyFingerqd,dailyFingerqd2,taocan,dailyTurncards,fetchCoins
+        node index.js unicom  --tryrun --tasks dailygameflow
     # - name: 【联通日常任务1】
     #   env:
     #     user: ${{secrets.unicom_user}}
