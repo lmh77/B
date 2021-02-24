@@ -3,7 +3,7 @@ name: emmm
 on:
   workflow_dispatch: 
   schedule: 
-    - cron: '0 9,17,21 * * *'
+    - cron: '0 0,8 * * *'
 
 jobs:
   build:
@@ -13,16 +13,16 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: 【设置服务时区】
+    - name: set-timezone
       run: sudo timedatectl set-timezone 'Asia/Shanghai'
 
-    - name: 【设置Node.JS】
+    - name: Node.JS
       uses: actions/setup-node@v1
       with:
         node-version: 12
         registry-url: "https://registry.npmjs.org"
         
-    - name: 【安装所需依赖】
+    - name: dependencies
       env:
         GISTENV: ${{secrets.GISTENV}}
       run: |
@@ -32,19 +32,6 @@ jobs:
         sed -i $(echo `sed -n '/process.env.GITHUB_ACTIONS/=' utils/scheduler.js`+1|bc)d utils/scheduler.js
         wget -c ${GISTENV} -O config/.env
 
-    - name: 【执行任务】
+    - name: run
       run: |
         cd ~/task && node index.js unicom  --tryrun --tasks $(cat ~/task/commands/tasks/unicom/unicom.js | sed '/\/\*\*\*/,/\*\*\*\//d' | sed '/\/\//d' | grep -oE "\"[a-z A-Z0-9]+\"" | cut -f2 -d\" | tr "\n" ",")
-        
-    # - name: 【联通日常任务1】
-    #   env:
-    #     user: ${{secrets.unicom_user}}
-    #     password: ${{secrets.unicom_password}}
-    #     appid: ${{secrets.unicom_appid}}
-    #   run: cd ~/task && node index.js unicom --user=${user} --password=${password} --appid=${appid} --tryrun
-    # - name: 【联通日常任务2】
-    #   env:
-    #     usernj: ${{secrets.UNICOM_USERNJ}}
-    #     passwordnj: ${{secrets.UNICOM_PASSWORDNJ}}
-    #     appidnj: ${{secrets.UNICOM_APPIDNJ}}
-    #   run: cd ~/task && node index.js unicom --user ${usernj} --password ${passwordnj} --appid ${appidnj} --tryrun
