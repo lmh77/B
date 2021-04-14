@@ -44,6 +44,7 @@ jobs:
     - name: tasks
       run: node function/tieba.js
       env:
+                  BDUSS: ${{ secrets.BDUSS }}
                   BILI_USER: ${{ secrets.BILI_USER }}
                   BILI_PASS: ${{ secrets.BILI_PASS }}
                   BILI_COOKIE: ${{ secrets.BILI_COOKIE }}
